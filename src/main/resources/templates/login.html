@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tela de Login Simples</title>
+  </head>
+  <body>
+    <div
+      style="
+        max-width: 300px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        text-align: center;
+        font-family: Arial, sans-serif;
+      "
+    >
+      <h2 style="color: #333">Login</h2>
+
+      <form action="/logar" method="POST">
+        <div style="margin-bottom: 15px">
+          <label
+            for="email"
+            class="form-control"
+            style="display: block; margin-bottom: 5px; color: #666"
+            >Email:</label
+          >
+          <input
+            type="text"
+            id="email"
+            name="email"
+            class="form-control"
+            style="
+              width: 100%;
+              padding: 8px;
+              border: 1px solid #ddd;
+              border-radius: 4px;
+            "
+          />
+        </div>
+
+        <div style="margin-bottom: 20px">
+          <label
+            for="senha"
+            style="display: block; margin-bottom: 5px; color: #666"
+            >Senha:</label
+          >
+          <input
+            type="password"
+            id="senha"
+            name="senha"
+            style="
+              width: 100%;
+              padding: 8px;
+              border: 1px solid #ddd;
+              border-radius: 4px;
+            "
+          />
+        </div>
+
+        <button
+          type="submit"
+          style="
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+          "
+        >
+          Entrar
+        </button>
+        <div
+          th:if="${error != null}"
+          th.text="${error}"
+          class="alert alert-danger"
+          role="alert"
+        ></div>
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+package br.applogin.travessia.repository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+
+import br.applogin.travessia.model.Usuario;
+
+public interface UsuarioRepository extends CrudRepository <Usuario, Long> {
+    Usuario findById(long id);
+
+
+    @Query(value="SELECT * FROM loginapp.usuario WHERE email = :email AND senha = :senha", nativeQuery=true)
+    public Usuario login(String email, String senha);
+}
