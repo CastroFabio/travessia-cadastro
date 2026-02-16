@@ -7,6 +7,9 @@ COPY mvnw .
 COPY .mvn .mvn
 COPY pom.xml .
 
+# Dar permissão de execução ao mvnw
+RUN chmod +x mvnw
+
 # Baixar dependências
 RUN ./mvnw dependency:go-offline -B
 
@@ -17,7 +20,7 @@ COPY src src
 RUN ./mvnw clean package -DskipTests
 
 # Expor porta
-EXPOSE 8080
+EXPOSE 8888
 
-# Comando para executar
-ENTRYPOINT ["java", "-jar", "target/*.jar"]
+# Comando para executar com suporte a JAVA_OPTS
+ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -jar /app/target/travessia-0.0.1-SNAPSHOT.jar"]

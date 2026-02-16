@@ -1,12 +1,12 @@
 package br.applogin.travessia.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 
 @Entity
 public class Usuario {
@@ -21,8 +21,8 @@ public class Usuario {
     @NotBlank
     private String email;
     
-    @Size(min = 6, max = 20, message = "Senha deve ter entre 6 e 20 caracteres")
-    @NotBlank
+    @NotBlank(message = "Senha é obrigatória")
+    @Column(length = 255)
     private String senha;
 
     public long getId() {
