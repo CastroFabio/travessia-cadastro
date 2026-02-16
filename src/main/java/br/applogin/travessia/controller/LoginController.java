@@ -4,24 +4,19 @@ import java.io.UnsupportedEncodingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.applogin.travessia.model.Usuario;
-import br.applogin.travessia.repository.UsuarioRepository;
-import jakarta.validation.Valid;
-
-import org.springframework.web.bind.annotation.PostMapping;
-
-import org.springframework.ui.Model;
-
-import jakarta.servlet.http.HttpServletResponse;
-
 import br.applogin.travessia.service.CookieService;
 import br.applogin.travessia.service.UsuarioService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 
 
 
