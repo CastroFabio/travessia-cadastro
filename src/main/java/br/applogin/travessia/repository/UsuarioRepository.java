@@ -7,7 +7,4 @@ import br.applogin.travessia.model.Usuario;
 public interface UsuarioRepository extends CrudRepository <Usuario, Long> {
     Usuario findById(long id);
     Usuario findByEmail(String email);
-
-/*     @Query(value="SELECT * FROM loginapp.usuario WHERE email = :email ", nativeQuery=true)
-    public Usuario login(String email); */
 }
