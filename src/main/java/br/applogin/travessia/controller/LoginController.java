@@ -20,6 +20,7 @@ import org.springframework.ui.Model;
 import jakarta.servlet.http.HttpServletResponse;
 
 import br.applogin.travessia.service.CookieService;
+import br.applogin.travessia.service.UsuarioService;
 import jakarta.servlet.http.HttpServletRequest;
 
 
@@ -27,9 +28,8 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class LoginController {
-    
     @Autowired
-    private UsuarioRepository ur;
+    private UsuarioService usuarioService;
 
     @GetMapping("/login")
     public String login(){
@@ -51,15 +51,17 @@ public class LoginController {
 
     @PostMapping("/logar")
     public String loginUsuario(Usuario usuario, Model model, HttpServletResponse response) throws UnsupportedEncodingException{
-        
-    Usuario usuarioLogado = this.ur.login(usuario.getEmail(), usuario.getSenha());
-    if(usuarioLogado != null){
-        CookieService.setCookie(response, "usuarioId", String.valueOf(usuarioLogado.getId()),10000);
-        CookieService.setCookie(response, "nomeUsuario", String.valueOf(usuarioLogado.getNome()),10000);
-        return "redirect:/";
-    }
-    model.addAttribute("error", "Email ou senha inválidos");
-    return "login";
+        Usuario usuarioLogado = this.usuarioService.logarUsuario(usuario.getEmail(), usuario.getSenha());
+
+        if(usuarioLogado != null)
+        {
+            CookieService.setCookie(response, "usuarioId", String.valueOf(usuarioLogado.getId()),10000);
+            CookieService.setCookie(response, "nomeUsuario", String.valueOf(usuarioLogado.getNome()),10000);
+            return "redirect:/";
+        }
+            
+        model.addAttribute("error", "Email ou senha inválidos");
+        return "login";
     }
 
 
@@ -75,7 +77,7 @@ public class LoginController {
         if (result.hasErrors()) {
             return "redirect:/cadastro";
         }
-        ur.save(usuario);
+        usuarioService.salvarUsuario(usuario);
         return "redirect:/login";
     }
     

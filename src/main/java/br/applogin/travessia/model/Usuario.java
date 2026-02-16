@@ -4,7 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Usuario {
@@ -12,13 +14,15 @@ public class Usuario {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
     
-    @NotEmpty
+    @NotBlank(message = "Nome é obrigatório")
     private String nome;
     
-    @NotEmpty
+    @Email(message = "Email inválido")
+    @NotBlank
     private String email;
     
-    @NotEmpty
+    @Size(min = 6, max = 20, message = "Senha deve ter entre 6 e 20 caracteres")
+    @NotBlank
     private String senha;
 
     public long getId() {
